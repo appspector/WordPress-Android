@@ -47,8 +47,8 @@ android {
 
     defaultConfig {
         applicationId "org.wordpress.android"
-        versionName "alpha-108"
-        versionCode 555
+        versionName "alpha-108-apsdk-${System.getenv('APPSPECTOR_SDK_VERSION')}-${System.getenv('CIRCLE_BUILD_NUM')}"
+        versionCode Integer.parseInt(System.getenv('CIRCLE_BUILD_NUM') ?: "0")
         minSdkVersion 16
         targetSdkVersion 26
 
