@@ -27,6 +27,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.android.volley.RequestQueue;
+import com.appspector.sdk.AppSpector;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
@@ -213,6 +214,16 @@ public class WordPress extends MultiDexApplication implements HasServiceInjector
     @Override
     public void onCreate() {
         super.onCreate();
+
+        AppSpector
+                .build(this)
+                .addPerformanceMonitor()
+                .addHttpMonitor()
+                .addLogMonitor()
+                .addScreenshotMonitor()
+                .addSQLMonitor()
+                .run(BuildConfig.APPSPECTOR_API_KEY);
+
         mContext = this;
         long startDate = SystemClock.elapsedRealtime();
 
